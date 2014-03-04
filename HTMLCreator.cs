@@ -75,7 +75,12 @@ namespace InspectCodeHTML
                                                     currentProject = currentProject.Replace("{CONTENT}", tmp.ToString());
                                                     totalProjects.Append(currentProject);
                                                     projectActive = false;
-                                                }
+                                                    
+                                                    errors = 0; warnings = 0; sug = 0; hint = 0;
+                                                    projectActive = true;
+                                                    tmp.Clear();
+                                                    currentProject = this.projectTemplate.Replace("{Name}", reader.GetAttribute("Name"));
+                                                } 
                                                 else
                                                 {
                                                     errors = 0; warnings = 0; sug = 0; hint = 0;
