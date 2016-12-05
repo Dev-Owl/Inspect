@@ -15,9 +15,9 @@ namespace InspectCodeHTML
         private string Input;
         private string OutPut;
         private string template;
-        private string issuetypeRowTemplate = @"<tr><td>{Name}</td><td>{Category}</td><td>{Description}</td><td><span style='color:{SeverityColor}'>'{Severity}</span></td></tr>";
+        private string issuetypeRowTemplate = @"<tr><td>{Name}</td><td>{Category}</td><td>{Description}</td><td><span class='{SeverityColor}'>'{Severity}</span></td></tr>";
         private string projectTemplate = "<h2>{Name}</h2> <input type=\"button\" style=\"cursor:pointer;\" onclick=\"toggle('{Name}')\" value=\"Show/Hide\" /><table><tr><th>Warnings</th><th>Error</th><th>Suggestion</th><th>Hint</th></tr><tr><td>{Warnings}</td><td>{ERROR}</td><td>{SUGGESTION}</td><td>{HINT}</td></table><div id=\"{Name}\" style=\"display:none;\">  <table border= \"1\"><tr><th>Type</th><th>Message</th><th>File</th><th>Line</th></tr>{CONTENT}</table></div>";
-        private string issueRowTemplate = @"<tr style='color:{RowColor}'><td>{Type}</td><td>{Message}</td><td>{File}</td><td>{Line}</td>";
+        private string issueRowTemplate = @"<tr class='{RowColor} issuerow' ><td>{Type}</td><td>{Message}</td><td>{File}</td><td>{Line}</td>";
         private StringBuilder tmp = new StringBuilder();
         private Dictionary<string, IssueType> issuetypes;
 
@@ -159,27 +159,27 @@ namespace InspectCodeHTML
             {
                 case "WARNING":
                     {
-                        return "#FF9732";
+                        return " warning ";
                     }
                     break;
                 case "ERROR":
                     {
-                        return "#FF0000";
+                        return " error ";
                     }
                     break;
                 case "SUGGESTION":
                     {
-                        return "#80C0FF";
+                        return " suggestion ";
                     }
                     break;
                 case "HINT":
                     {
-                        return "#9AFF32";
+                        return " hint ";
                     }
                     break;
                 default:
                     {
-                        return "#000000";
+                        return " none ";
                     }break;
             }
         }

@@ -8,6 +8,27 @@
         {
             font-weight:bold;
         }
+        
+        .warning{
+            color:#FF9732;
+        }
+
+        .error{
+            color:#FF0000;
+        }
+
+        .suggestion{
+            color:#80C0FF;
+        }
+
+        .hint{
+            color:"#31edff";
+        }
+
+        .none {
+            color:black;
+        }
+
     </style> 
 </head>
 <body>
@@ -32,7 +53,23 @@
         {
             $("#" + id).slideToggle("fast");
         }
+        $(document).ready(function () {
+
+            $('[data-toogle="1"]').change(function () {
+                var SelectorClass = $(this).data('toggleClass');
+                if (this.checked) {
+                    $('tr.issuerow.' + SelectorClass).show();
+                }
+                else {
+                    $('.issuerow.' + SelectorClass).hide();
+                }
+            });
+
+        });
     </script>
+
+    
+
     <h1>Report header</h1>
     <table style="width:100%">
         <tr>
@@ -67,6 +104,15 @@
         {IssueTypeDescirption}
     </table>
     </div>
+    
+    <div id="filters" style="margin:15px;border:1px solid black;padding:5px;">
+        <h2>Filter</h2>
+        <label>Show error <input id="onlyError" type="checkbox" name="Only error" data-toogle="1" data-toggle-class="error" checked /></label>
+        <label>Show warning <input id="onlyWarning" type="checkbox" name="Only warning" data-toogle="1" data-toggle-class="warning" checked /></label>
+        <label>Show suggestion <input id="onlyWarning" type="checkbox" name="Only warning" data-toogle="1" data-toggle-class="suggestion" checked /></label>
+        <label>Show hint <input id="onlyWarning" type="checkbox" name="Only warning" data-toogle="1" data-toggle-class="hint" checked /></label>
+    </div>
+    
     <div id="projects" style="margin-top:15px;">
         {PROJECTS}
     </div>
